@@ -14,9 +14,10 @@ export async function middleware(req: NextRequest) {
     const isNextPath = path.startsWith("/_next");
     const isSignInPath = path === '/api/session/sign-in';
     const isNewPasswordRequiredPath = path === '/auth/new-password';
+    const isApiNewPasswordRequiredPath = path === '/api/session/new-password';
     const isRenewSessionPath = path === '/api/session/renew-session' && refreshToken;
 
-    if (isNextPath || isSignInPath || isRenewSessionPath || isNewPasswordRequiredPath) {
+    if (isNextPath || isSignInPath || isRenewSessionPath || isApiNewPasswordRequiredPath) {
         return NextResponse.next();
     }
 
@@ -58,7 +59,11 @@ export async function middleware(req: NextRequest) {
         }
     }
 
-    if (authenticated && path === '/auth/sign-in') {
+    if(!authenticated && path === '/auth/new-password') {
+        return NextResponse.next();
+    }
+    
+    if (authenticated && path === '/auth/sign-in' || path === '/auth/new-password') {
         return redirectToHome();
     } else if (!authenticated) {
         return redirectToSignIn();
