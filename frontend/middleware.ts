@@ -13,9 +13,10 @@ export async function middleware(req: NextRequest) {
 
     const isNextPath = path.startsWith("/_next");
     const isSignInPath = path === '/api/session/sign-in';
+    const isNewPasswordRequiredPath = path === '/auth/new-password';
     const isRenewSessionPath = path === '/api/session/renew-session' && refreshToken;
 
-    if (isNextPath || isSignInPath || isRenewSessionPath) {
+    if (isNextPath || isSignInPath || isRenewSessionPath || isNewPasswordRequiredPath) {
         return NextResponse.next();
     }
 

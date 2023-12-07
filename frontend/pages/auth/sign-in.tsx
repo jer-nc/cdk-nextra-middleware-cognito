@@ -24,14 +24,19 @@ const AuthPage = () => {
     e.preventDefault()
     setErrors('')
     setIsLoading(true)
-    const { accessToken, refreshToken } = await signIn(email, password)
+    const { accessToken, refreshToken, newPasswordRequired } = await signIn(email, password)
     if (accessToken && refreshToken) {
       console.log('success')
       push('/')
-    } else {
+    }
+    else if (newPasswordRequired) {
+      console.log('newPasswordRequired')
+      push('/auth/new-password')
+    }
+    else {
       setErrors('Invalid email or password')
       setIsLoading(false)
-      console.log('error')
+      console.log('error',)
     }
   };
 

@@ -35,6 +35,7 @@ export const createCognitoPool = (scope: Construct, props: PoolProps) => {
         },
         oAuth: {
             flows: {
+                
                 authorizationCodeGrant: true, 
             },
             scopes: [
