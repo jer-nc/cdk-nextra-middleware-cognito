@@ -33,7 +33,7 @@ const SignOutButton = () => {
 
   return (
     <div>
-      <button onClick={handleSignOut} className='px-4 py-2 dark:bg-black/90 rounded-md text-white font-semibold'>Sign Out</button>
+      <button onClick={handleSignOut} className='px-4 py-2 dark:bg-black/90 rounded-md text-white font-semibold whitespace-nowrap'>Sign Out</button>
     </div>
   )
 }

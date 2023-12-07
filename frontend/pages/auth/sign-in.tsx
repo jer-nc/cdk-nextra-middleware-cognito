@@ -20,7 +20,7 @@ const AuthPage = () => {
     document.documentElement.removeAttribute('class');
   }, []);
 
-  const handleSignIn = async (e) => {
+  const handleSignIn = async (e: { preventDefault: () => void }) => {
     e.preventDefault()
     setErrors('')
     setIsLoading(true)

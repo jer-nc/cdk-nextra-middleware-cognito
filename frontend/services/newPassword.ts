@@ -15,7 +15,6 @@ export const newPassword = async (newPassword: string) => {
             body: JSON.stringify(newPassword),
         });
 
-        // console.log(response)
         if (response.ok) {
             const data = await response.json();
             // console.log('Response:', data);

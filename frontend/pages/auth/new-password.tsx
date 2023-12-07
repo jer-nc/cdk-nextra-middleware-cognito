@@ -28,13 +28,10 @@ const NewPasswordPage = () => {
             const result = await newPassword(password);
 
             if (result.status === 'success') {
-                // Manejar el éxito
                 console.log('Success:', result.data.message);
                 push('/auth/sign-in');
-                // Aquí puedes redirigir al usuario o actualizar el estado para mostrar que la contraseña se cambió correctamente
                 setIsLoading(false);
             } else {
-                // Manejar los errores devueltos por la API
                 console.error('Error:', result.message);
                 console.error('Error:', result.error);
                 setErrors(result.error);
