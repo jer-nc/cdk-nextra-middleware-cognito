@@ -1,5 +1,6 @@
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
+import { newPassword } from '../../services/newPassword';
 
 const NewPasswordPage = () => {
     const [password, setPassword] = useState('');
@@ -23,7 +24,29 @@ const NewPasswordPage = () => {
         console.log('Password:', password);
         console.log('Confirm Password:', confirmPassword);
 
-        setIsLoading(false);
+        try {
+            const result = await newPassword(password);
+
+            if (result.status === 'success') {
+                // Manejar el éxito
+                console.log('Success:', result.data.message);
+                push('/auth/sign-in');
+                // Aquí puedes redirigir al usuario o actualizar el estado para mostrar que la contraseña se cambió correctamente
+                setIsLoading(false);
+            } else {
+                // Manejar los errores devueltos por la API
+                console.error('Error:', result.message);
+                console.error('Error:', result.error);
+                setErrors(result.error);
+                setIsLoading(false);
+            }
+
+            
+        } catch (error) {
+            console.error('Error:', error);
+            setErrors('Error changing password');
+            setIsLoading(false);
+        }
     };
 
     const handleNavigate = () => {
