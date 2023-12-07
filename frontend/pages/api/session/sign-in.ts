@@ -57,6 +57,22 @@ export default async function handler(
             },
             newPasswordRequired: function (userAttributes, requiredAttributes) {
                 console.log('newPasswordRequired');
+                res.setHeader('Set-Cookie', [
+                    cookie.serialize('tmp_pwd', password, {
+                        httpOnly: true,
+                        maxAge: 5 * 60,
+                        sameSite: 'strict',
+                        secure: true,
+                        path: '/',
+                    }),
+                    cookie.serialize('username', email, {
+                        httpOnly: true,
+                        maxAge: 5 * 60,
+                        sameSite: 'strict',
+                        secure: true,
+                        path: '/',
+                    }),
+                ]);
                 res.status(200).json({ message: 'New password required', newPasswordRequired: true });
             }
         });
