@@ -28,14 +28,13 @@ export const createCognitoPool = (scope: Construct, props: PoolProps) => {
         removalPolicy: RemovalPolicy.DESTROY,
     });
 
-    // Create a User Pool Client for the API to use for sign in and sign up
+    // Create a User Pool Client for the API to use for sign in
     const publicAppClient = userPool.addClient('PublicAppClient', {
         authFlows: {
             userSrp: true,
         },
         oAuth: {
             flows: {
-                
                 authorizationCodeGrant: true, 
             },
             scopes: [
