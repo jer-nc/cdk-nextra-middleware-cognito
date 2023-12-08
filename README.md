@@ -59,26 +59,33 @@ NEXT_PUBLIC_PROD_API_CHECK_ACCESS_TOKEN_URL=https://XXX.amplifyapp.com/api/sessi
 
 ### File: amplify.yml
 
+We've added the environment variables to the build phase. This configuration is necessary to build the app with the environment variables. We don't know if there's a better way to do this.
+
 ```yml
 version: 1
-frontend:
-  phases:
-    preBuild:
-      commands:
-        - npm ci
-    build:
-      commands:
-        - env | grep -e USERPOOL_ID >> .env.production
-        - env | grep -e USERPOOL_CLIENT_ID >> .env.production
-        - npm run build
-        
-  artifacts:
-    baseDirectory: .next
-    files:
-      - '**/*'
-  cache:
-    paths:
-      - node_modules/**/*
+applications:
+  - frontend:
+      phases:
+        preBuild:
+          commands:
+            - npm ci
+        build:
+          commands:
+            - env | grep -e USERPOOL_ID >> .env.production
+            - env | grep -e USERPOOL_CLIENT_ID >> .env.production
+            - env | grep -e NEXT_PUBLIC_PROD_API_SIGNIN_URL >> .env.production
+            - env | grep -e NEXT_PUBLIC_PROD_API_SIGNOUT_URL >> .env.production
+            - env | grep -e NEXT_PUBLIC_PROD_API_RENEW_SESSION_URL >> .env.production
+            - env | grep -e NEXT_PUBLIC_PROD_API_CHECK_ACCESS_TOKEN_URL >> .env.production
+            - npm run build
+      artifacts:
+        baseDirectory: .next
+        files:
+          - '**/*'
+      cache:
+        paths:
+          - node_modules/**/*
+    appRoot: frontend
 ```
 
 ### Amplify Monorepo

@@ -4,7 +4,7 @@ export const signIn = async (email : string, password: string) => {
 
     const apiUrl = isProduction ? process.env.NEXT_PUBLIC_PROD_API_SIGNIN_URL : 'http://localhost:3000/api/session/sign-in';
 
-    // console.log('apiUrl:', apiUrl)
+    console.log('apiUrl:', apiUrl)
 
     try {
         const response = await fetch(apiUrl, {
