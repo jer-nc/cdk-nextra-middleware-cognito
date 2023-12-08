@@ -55,7 +55,7 @@ NEXT_PUBLIC_PROD_API_CHECK_ACCESS_TOKEN_URL=https://XXX.amplifyapp.com/api/sessi
 - Node.js `18.13.0`
 - Next.js `14/latest`
 
-![amplify-build-image](assets/env-amplify-2.png)
+![amplify-build-image](assets/env-amplify.png)
 
 ### File: amplify.yml
 
