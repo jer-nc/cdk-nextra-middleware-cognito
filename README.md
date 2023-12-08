@@ -52,8 +52,10 @@ NEXT_PUBLIC_PROD_API_CHECK_ACCESS_TOKEN_URL=https://XXX.amplifyapp.com/api/sessi
 
 ### Build Image Settings:
 
-- Node.js 18.13.0
-- Next.js 14/latest
+- Node.js `18.13.0`
+- Next.js `14/latest`
+
+![amplify-build-image](assets/env-amplify.png)
 
 ### File: amplify.yml
 
@@ -78,5 +80,11 @@ frontend:
     paths:
       - node_modules/**/*
 ```
+
+### Amplify Monorepo
+
+Connect AWS Amplify with GITHUB. Choose the repository and branch. Write frontend as entry directory.
+
+![amplify-monorepo](assets/monorepo-amplify.png)
 
 Configure monorepo Amplify hosting: https://docs.aws.amazon.com/amplify/latest/userguide/build-settings.html#build-settings-monorepo
