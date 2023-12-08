@@ -10,7 +10,7 @@ type PoolProps = {
 export const createCognitoPool = (scope: Construct, props: PoolProps) => {
     const userPool = new cognito.UserPool(scope, `${props.poolName}`, {
         userPoolName: `${props.poolName}`,
-        selfSignUpEnabled: true,
+        selfSignUpEnabled: false,
         autoVerify: {
             email: true,
         },
