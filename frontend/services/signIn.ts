@@ -15,10 +15,10 @@ export const signIn = async (email : string, password: string) => {
             body: JSON.stringify({ email, password }),
         });
 
-        console.log(response)
+        // console.log(response)
         if (response.ok) {
             const data = await response.json();
-            console.log('Response:', data);
+            // console.log('Response:', data);
             return data;
         } else {
             console.error('Error:', response.statusText);
